@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Dmitrii Kubata](https://up.htmlacademy.ru/javascript/24/user/1205153).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван Никитин](https://htmlacademy.ru/profile/inikitin).
 
 ---
 
