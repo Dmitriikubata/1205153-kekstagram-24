@@ -1,10 +1,10 @@
 function getRandomInt(min, max) {
-  if (min <= max && min >=0) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
+  if (min > max || min < 0) {
+    throw new Error('Ошибка. Введите корректные данные');
   }
-  throw new Error('Ошибка. Введите корректные данные');
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 getRandomInt(1,100);
@@ -12,11 +12,12 @@ getRandomInt(1,100);
 //sourse: https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 
 
-function checkCommentLength(commentLength, maxCommentLength) {
-  if (commentLength > maxCommentLength || maxCommentLength > 140) {
-    return false;
+function checkCommentLength(comment, maxCommentLength = 140) {
+  if (!comment || typeof comment !== 'string') {
+    throw new Error('Ошибка. Нет текста комментария');
   }
-  return true;
+  return comment.length <= maxCommentLength;
 }
 
-checkCommentLength(100, 140);
+checkCommentLength('check length message - true', 140);
+checkCommentLength('check length message - false', 10);
