@@ -54,27 +54,32 @@ const NAME_LIST = [
 ];
 
 const PHOTO_INFO_COUNT = 25;
+
 let generatedIdPhoto = 0;
 let generatedUrlPhoto = 0;
 
-const getPhotoInfo = () => {
-  const COMMENT = {
+function generateComment () {
+  return {
     id: getRandomInt(1000,9000),
-    avatar: `img/avatar-${  getRandomInt(1,6)  }.svg`,
-    message: COMMENTS_LIST[getRandomInt(0,COMMENTS_LIST.length - 1)],
-    name: NAME_LIST[getRandomInt(0,6)],
+    avatar: `img/avatar-${  getRandomInt(1, 6)  }.svg`,
+    message: COMMENTS_LIST[ getRandomInt(0, COMMENTS_LIST.length - 1) ],
+    name: NAME_LIST[ getRandomInt(0, 6) ],
   };
+}
+
+const getPhotoInfo = () => {
   generatedIdPhoto++;
   generatedUrlPhoto++;
+
   return {
     id: generatedIdPhoto,
-    url: `photos/ ${ generatedUrlPhoto }.jpg`,
-    description: DESCRIPTION_PHOTO[getRandomInt(0,DESCRIPTION_PHOTO.length - 1)],
+    url: `photos/${ generatedUrlPhoto }.jpg`,
+    description: DESCRIPTION_PHOTO[ getRandomInt(0, DESCRIPTION_PHOTO.length - 1) ],
     likes: getRandomInt(1,300),
-    comments: COMMENT,
+    comments: Array.from( {length: getRandomInt(1,6)}, generateComment ),
   };
 };
 
 // временное отключение линтера, нужно для дз
 // eslint-disable-next-line no-unused-vars
-const photoInfo = Array.from({length: PHOTO_INFO_COUNT}, getPhotoInfo);
+const photoInfo = Array.from( {length: PHOTO_INFO_COUNT}, getPhotoInfo );
