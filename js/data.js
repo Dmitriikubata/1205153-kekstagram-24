@@ -1,7 +1,7 @@
 
 import {getRandomInt} from './utils.js';
 
-getRandomInt(1, 3);
+
 // Генерация массива с описанием фотографии от пользователя
 
 const DESCRIPTION_PHOTO = [
