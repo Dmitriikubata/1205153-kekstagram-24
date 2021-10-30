@@ -47,13 +47,14 @@ function generateComment () {
 const getPhotoInfo = () => {
   generatedIdPhoto++;
   generatedUrlPhoto++;
+  const GET_COMMENT = Array.from( {length: getRandomInt(1,6)}, generateComment );
 
   return {
     id: generatedIdPhoto,
     url: `photos/${ generatedUrlPhoto }.jpg`,
     description: DESCRIPTION_PHOTO[ getRandomInt(0, DESCRIPTION_PHOTO.length - 1) ],
     likes: getRandomInt(1,300),
-    comments: Array.from( {length: getRandomInt(1,6)}, generateComment ),
+    comments: GET_COMMENT,
   };
 };
 
