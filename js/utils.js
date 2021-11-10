@@ -21,4 +21,5 @@ function checkCommentLength(comment, maxCommentLength = 140) {
   return comment.length <= maxCommentLength;
 }
 
-export {getRandomInt, checkCommentLength};
+export { getRandomInt, checkCommentLength };
+
