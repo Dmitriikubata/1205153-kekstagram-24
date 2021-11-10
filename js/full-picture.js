@@ -40,19 +40,19 @@ function setPhotoToPopup(photo) {
 
 function onCloseButtonClick() {
   closePopup();
+  closeButton.removeEventListener('click', onCloseButtonClick);
 }
 
 function onEscapeClick(evt) {
   if (evt.key === 'Escape') {
     closePopup();
+    document.removeEventListener('keydown', onEscapeClick);
   }
 }
 
 function closePopup() {
   bigPicture.classList.add('hidden');
   unblockScrollInPopup();
-  document.removeEventListener('keydown', onEscapeClick);
-  closeButton.removeEventListener('click', onCloseButtonClick);
 }
 
 export { setPhotoToPopup };
