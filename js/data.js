@@ -58,8 +58,6 @@ const getPhotoInfo = () => {
   };
 };
 
-// временное отключение линтера, нужно для дз
-// eslint-disable-next-line no-unused-vars
 const photoInfo = Array.from( {length: PHOTO_INFO_COUNT}, getPhotoInfo );
 
 export {photoInfo};

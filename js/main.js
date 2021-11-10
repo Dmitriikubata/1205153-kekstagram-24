@@ -1,4 +1,5 @@
 import './utils.js';
 import './data.js';
-import './addPicture.js';
+import './add-picture.js';
+import './full-picture.js';
 
