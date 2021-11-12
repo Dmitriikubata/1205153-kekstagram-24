@@ -21,5 +21,35 @@ function checkCommentLength(comment, maxCommentLength = 140) {
   return comment.length <= maxCommentLength;
 }
 
-export { getRandomInt, checkCommentLength };
+
+// блокировка и разблокировка скролла фона за попапом
+
+const body = document.querySelector('body');
+const blockScrollInPopup = () => body.classList.add('modal-open');
+const unblockScrollInPopup = () => body.classList.remove('modal-open');
+
+
+// закрытие попапа по крестику и esc
+
+function onCloseButtonClick(closeButtonClickName, closePopupName) {
+  closePopup(closePopupName);
+  closeButtonClickName.removeEventListener('click', onCloseButtonClick);
+}
+
+function onEscapeClick(closePopupName, evt) {
+  if (evt.target.closest('.img-upload__text')) {
+    return '';
+  } else if
+  (evt.key === 'Escape') {
+    closePopup(closePopupName);
+    document.removeEventListener('keydown', onEscapeClick);
+  }
+}
+
+function closePopup(popupName) {
+  popupName.classList.add('hidden');
+  unblockScrollInPopup();
+}
+
+export { getRandomInt, checkCommentLength, blockScrollInPopup, unblockScrollInPopup, onCloseButtonClick, onEscapeClick };
 

@@ -1,7 +1,8 @@
+import { blockScrollInPopup, onCloseButtonClick, onEscapeClick } from './utils.js';
+
 const commentContainer = document.querySelector('.social__comments');
 const commentTemplate = commentContainer.querySelector('li');
 const bigPicture = document.querySelector('.big-picture');
-const body = document.querySelector('body');
 const closeButton = bigPicture.querySelector('.big-picture__cancel');
 
 const commentCount = document.querySelector('.social__comment-count');
@@ -13,9 +14,6 @@ const liCommentFirst = commentContainer.querySelector('li:first-child');
 const liCommentSecond = commentContainer.querySelector('li:nth-child(2)');
 liCommentFirst.remove();
 liCommentSecond.remove();
-
-const blockScrollInPopup = () => body.classList.add('modal-open');
-const unblockScrollInPopup = () => body.classList.remove('modal-open');
 
 
 function setPhotoToPopup(photo) {
@@ -33,26 +31,9 @@ function setPhotoToPopup(photo) {
 
     commentContainer.appendChild(commentElement);
   }
-  document.addEventListener('keydown', onEscapeClick);
-  closeButton.addEventListener('click', onCloseButtonClick);
+  document.addEventListener('keydown', () => onEscapeClick(bigPicture, event));
+  closeButton.addEventListener('click', () => onCloseButtonClick(closeButton, bigPicture));
   blockScrollInPopup();
-}
-
-function onCloseButtonClick() {
-  closePopup();
-  closeButton.removeEventListener('click', onCloseButtonClick);
-}
-
-function onEscapeClick(evt) {
-  if (evt.key === 'Escape') {
-    closePopup();
-    document.removeEventListener('keydown', onEscapeClick);
-  }
-}
-
-function closePopup() {
-  bigPicture.classList.add('hidden');
-  unblockScrollInPopup();
 }
 
 export { setPhotoToPopup };
