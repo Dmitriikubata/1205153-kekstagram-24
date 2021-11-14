@@ -20,9 +20,9 @@ uploadFile.addEventListener('change', showForm);
 inputHashtag.value = '';
 
 const HashtagValue = inputHashtag.value.split(' ');
+const hashtagRules = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 HashtagValue.forEach((element) => {
-  const hashtagRules = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
   const hashtagRulesTest = hashtagRules.test(element);
 
   console.log(hashtagRulesTest);
@@ -30,13 +30,13 @@ HashtagValue.forEach((element) => {
 
   inputHashtag.addEventListener('input', () => {
 
-    if (hashtagRulesTest === false) {
+    if (!hashtagRulesTest) {
       inputHashtag.setCustomValidity('Введите в поле хэштег через # без спец символов');
+
     } else {
       inputHashtag.setCustomValidity('');
+      inputHashtag.reportValidity();
     }
-
-    inputHashtag.reportValidity();
   });
 });
 
